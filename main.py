@@ -76,7 +76,7 @@ async def main():
     for apps in res:
         for app in apps:
             if not db.is_app_exists(app):
-                #db.add_app(app)
+                db.add_app(app)
                 message = f"Новое приложение от разработчика {app.author}!\n{app.name} {app.link}"
                 for user in USERS:
                     await bot.send_message(user, message)
@@ -93,9 +93,9 @@ if __name__ == "__main__":
     logger.add("logs/info.log", format="{time} {level} {message}", level="INFO", rotation="01:00")
     db = Database()
     logger.info("Start bot")
-    # scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
-    # scheduler.add_job(main, trigger='interval', minutes=INTERVAL)
-    # scheduler.start()
-    executor.start_polling(dp, on_startup=main)
+    scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
+    scheduler.add_job(main, trigger='interval', minutes=INTERVAL)
+    scheduler.start()
+    executor.start_polling(dp)
 
 
