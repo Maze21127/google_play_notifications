@@ -12,7 +12,7 @@ from models import App
 from handlers import *
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from settings import USER_ID, INTERVAL
+from settings import INTERVAL, USERS
 
 BASE_LINK = "https://play.google.com"
 
@@ -78,7 +78,8 @@ async def main():
             if not db.is_app_exists(app):
                 #db.add_app(app)
                 message = f"Новое приложение от разработчика {app.author}!\n{app.name} {app.link}"
-                await bot.send_message(USER_ID, message)
+                for user in USERS:
+                    await bot.send_message(user, message)
 
 
 def get_devs_list(filename: str):

@@ -4,5 +4,5 @@ load_dotenv('.env')
 
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-USER_ID = os.getenv('USER_ID')
+USERS = tuple(map(int, os.getenv('USERS').split()))
 INTERVAL = os.getenv('INTERVAL')
