@@ -96,6 +96,6 @@ if __name__ == "__main__":
     # scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
     # scheduler.add_job(main, trigger='interval', minutes=INTERVAL)
     # scheduler.start()
-    executor.start_polling(dp, on_startup=main())
+    executor.start_polling(dp, on_startup=main)
 
 
